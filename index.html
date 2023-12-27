@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>News Feed</title>
+</head>
+<body>
+    <!-- Header della pagina -->
+    <header id="site_header">
+        <h1> News Feed </h1>
+    </header>
+
+    <!-- Contenitore della pagina -->
+    <div class="container">
+        
+        <!-- Selezione del tipo di news -->
+        <div class="news-type-section">
+            <label for="news-type">Seleziona il tipo di news:</label>
+            <select id="news-type">
+                <option value="all">Tutti i tags</option>
+                <option value="politcs">Politica</option>
+                <option value="geo">Geo</option>
+                <option value="tech">Tech</option>
+                <option value="travel">Viaggi</option>
+                <option value="cuisine">Cucina</option>
+                <option value="art">Arte</option>
+            </select>
+        </div>
+
+        <!-- Creazione news -->
+        <div id="news-section" class="news-section">
+            <!-- Le news vengono aggiunte dinamicamente tramite JavaScript -->
+        </div>
+    </div>
+
+    <script src="./assets/script.js"></script>
+</body>
+</html>
