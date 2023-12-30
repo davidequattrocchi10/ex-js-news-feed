@@ -71,6 +71,9 @@ function showNews(selectedType) {
             <p>in data ${news.date}</p>
             <p>${news.content[0]}</p>
             <img src="${news.image}" alt="${news.title}">
+            <div class="buttons">
+                ${news.type.map(label => `<button class="label-button ${label}">${label}</button>`).join('')}
+            </div>
         `;
 
         newsSection.appendChild(newsElement);

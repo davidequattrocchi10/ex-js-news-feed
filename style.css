@@ -1,8 +1,44 @@
 body {
     margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
     box-sizing: border-box;
 }
+
+
+/* Media queries per ottenere un sito web responsive */
+
+/* Dimensioni dello schermo fino a 480px */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 0 5%;
+    }
+
+}
+
+/* Dimensioni dello schermo da 481px a 768px */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .container {
+        padding: 0 10%;
+    }
+
+}
+
+/* Dimensioni dello schermo da 769px a 1200px */
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    .container {
+        padding: 0 20%;
+    }
+
+}
+
+/* Dimensioni dello schermo più larghe di 1200px */
+@media screen and (min-width: 1201px) {
+    .container {
+        padding: 0 22%;
+    }
+}
+
 
 /* Caratteristiche Header*/
 header {
@@ -21,15 +57,28 @@ header {
     text-align: center;
     background-color: #144464;
     color: #fff;
-    padding: 0px 200px;
 }
 
 /* Caratteristiche sezione per la selezione del tipo di news*/
-.news-type-section {
+.news-type-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
+    height: 30px;
     background-color: #fff;
     color: black;
-    padding: 20px;
+    padding: 15px;
+}
+
+/* Stile del quadratino dinamico */
+.saved-news-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border: 1px solid black;
+    background-color: white; 
 }
 
 /* Caratteristiche sezione contenitore card*/
@@ -37,22 +86,62 @@ header {
     text-align: left;
     background-color: #144464;
     color: black;
-    padding: 20px;
-    border-radius: 8px;
 }
 
 /* Caratteristiche delle card*/
 .news-item {
     background-color: #fff;
     border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px; /* Spazio fra le card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera*/
+    margin-bottom: 20px;
+    padding: 15px;
+    position: relative; /* Aggiunto per posizionare i bottoni in modo assoluto rispetto alla card */
+}
+
+/* Titolo della news */
+.news-item h2 {
+    font-weight: bold;
+    margin-bottom: -15px;
+}
+
+/* Paragrafi della news */
+.news-item p {
+    margin-bottom: 5px;
+}
+
+/* Primo paragrafo in grassetto */
+.news-item p:first-of-type {
+    font-weight: bold;
+    margin-bottom: -15px;
 }
 
 .news-item img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
     margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
 }
+
+/* Bottoni delle etichette */
+.buttons {
+    display: flex;
+    border: outset;
+    justify-content: center;
+}
+
+.label-button {
+    margin-right: 15px;
+    padding: 10px 20px;
+    border-radius: 20%;
+    border: 1px solid black;
+}
+
+
+
+/* Colori delle etichette */
+.label-button.geo { background-color: #27ae60; color: #fff; }
+.label-button.tech { background-color: #3498db; color: #fff; }
+.label-button.art { background-color: #f39c12; color: #fff; }
+.label-button.travel { background-color: #e74c3c; color: #fff; }
+.label-button.cuisine { background-color: #9b59b6; color: #fff; }
+
