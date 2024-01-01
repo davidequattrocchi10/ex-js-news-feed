@@ -3,6 +3,7 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     box-sizing: border-box;
+    background-color: #144464; 
 }
 
 
@@ -42,7 +43,6 @@ body {
 
 /* Caratteristiche Header*/
 header {
-    background-color: #144464;
     text-align: center;
     padding: 10px;
 }
@@ -55,7 +55,6 @@ header {
 /* Caratteristiche contenitore della pagina*/
 .container {
     text-align: center;
-    background-color: #144464;
     color: #fff;
 }
 
@@ -84,7 +83,6 @@ header {
 /* Caratteristiche sezione contenitore card*/
 .news-section {
     text-align: left;
-    background-color: #144464;
     color: black;
 }
 
@@ -122,6 +120,12 @@ header {
     width: 100%;
 }
 
+
+.no-news-message{
+    color: #fff;
+
+}
+
 /* Bottoni delle etichette */
 .buttons {
     display: flex;
@@ -145,3 +149,12 @@ header {
 .label-button.travel { background-color: #e74c3c; color: #fff; }
 .label-button.cuisine { background-color: #9b59b6; color: #fff; }
 
+
+
+
+/* Stile per la firma */
+footer {
+    text-align: right;
+    padding: 10px;
+    color: #fff;
+}

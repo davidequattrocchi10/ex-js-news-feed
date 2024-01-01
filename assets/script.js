@@ -60,24 +60,34 @@ function showNews(selectedType) {
     // Filtra le news in base al tipo selezionato
     const filteredNews = selectedType === "all" ? newsData : newsData.filter(news => news.type.includes(selectedType));
 
-    // Genera e aggiungi le news alla pagina
-    filteredNews.forEach(news => {
-        const newsElement = document.createElement("div");
-        newsElement.classList.add("news-item");
+    //Se ci sono news disponibili
+    if (filteredNews.length>0){
 
-        newsElement.innerHTML = `
-            <h2>${news.title}</h2>
-            <p>pubblicato da: ${news.author}</p>
-            <p>in data ${news.date}</p>
-            <p>${news.content[0]}</p>
-            <img src="${news.image}" alt="${news.title}">
-            <div class="buttons">
-                ${news.type.map(label => `<button class="label-button ${label}">${label}</button>`).join('')}
-            </div>
-        `;
+        // Genera e aggiungi le news alla pagina
+            filteredNews.forEach(news => {
+                const newsElement = document.createElement("div");
+                newsElement.classList.add("news-item");
 
-        newsSection.appendChild(newsElement);
-    });
+                newsElement.innerHTML = `
+                    <h2>${news.title}</h2>
+                    <p>pubblicato da: ${news.author}</p>
+                    <p>in data ${news.date}</p>
+                    <p>${news.content[0]}</p>
+                    <img src="${news.image}" alt="${news.title}">
+                    <div class="buttons">
+                        ${news.type.map(label => `<button class="label-button ${label}">${label}</button>`).join('')}
+                    </div>
+                `;
+
+                newsSection.appendChild(newsElement);
+            });
+        } else {
+                // Nessuna news disponibile
+                const noNewsMessage = document.createElement("h1");
+                noNewsMessage.classList.add("no-news-message");
+                noNewsMessage.textContent = "No news available";
+                newsSection.appendChild(noNewsMessage);
+        }
 }
 
 
