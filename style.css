@@ -73,11 +73,13 @@ header {
 /* Stile del quadratino dinamico */
 .saved-news-indicator {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
     margin-right: 5px;
     border: 1px solid black;
-    background-color: white; 
+    background-color: white;
+    cursor: pointer; 
+    position: relative;
 }
 
 /* Caratteristiche sezione contenitore card*/
@@ -92,7 +94,18 @@ header {
     border-radius: 8px;
     margin-bottom: 20px;
     padding: 15px;
-    position: relative; /* Aggiunto per posizionare i bottoni in modo assoluto rispetto alla card */
+    position: relative; /* Aggiunto per posizionare bookmark e button in modo assoluto rispetto alla card */
+}
+
+.news-item .news-header {
+    display: flex;
+    align-items: baseline;
+    margin-top: -15px;
+}
+
+.save-bookmark {
+    margin-left: 30px;
+    font-size: 25px;
 }
 
 /* Titolo della news */
@@ -126,6 +139,7 @@ header {
 
 }
 
+
 /* Bottoni delle etichette */
 .buttons {
     display: flex;
@@ -148,8 +162,6 @@ header {
 .label-button.art { background-color: #f39c12; color: #fff; }
 .label-button.travel { background-color: #e74c3c; color: #fff; }
 .label-button.cuisine { background-color: #9b59b6; color: #fff; }
-
-
 
 
 /* Stile per la firma */
