@@ -94,7 +94,6 @@ header {
     border-radius: 8px;
     margin-bottom: 20px;
     padding: 15px;
-    position: relative; /* Aggiunto per posizionare bookmark e button in modo assoluto rispetto alla card */
 }
 
 .news-item .news-header {

@@ -46,58 +46,69 @@ const newsData = [
     ];
 
     
-        // Elementi del DOM
-        const newsSection = document.getElementById("news-section");
-        const savedNewsIndicator = document.querySelector(".saved-news-indicator");
-        const newsTypeSelect = document.getElementById("news-type");
+    // Elementi del DOM
+    const newsSection = document.getElementById("news-section");
+    const savedNewsIndicator = document.querySelector(".saved-news-indicator");
+    const newsTypeSelect = document.getElementById("news-type");
 
-        // Array per tenere traccia delle notizie salvate
-        let savedNews = [];
+    // Array per tenere traccia delle notizie salvate
+    let savedNews = [];
 
-        // Funzione per visualizzare le notizie sulla pagina
-        function displayNews(selectedType, newsToDisplay = newsData) {
-            newsSection.innerHTML = "";
+    // Funzione per visualizzare le notizie sulla pagina
+    function displayNews(selectedType, newsToDisplay = newsData) {
+        newsSection.innerHTML = "";
 
-        // Filtra le news in base al tipo selezionato
-        const filteredNews = selectedType === "all" ? newsToDisplay : newsToDisplay.filter(news => news.type.includes(selectedType));
+    // Filtra le news in base al tipo selezionato
+    const filteredNews = selectedType === "all" ? newsToDisplay : newsToDisplay.filter(news => news.type.includes(selectedType));
+
+    // Se il check-mark è attivo e ci sono notizie salvate, mostra solo le notizie salvate in base al tipo
+    if (savedNewsIndicator.classList.contains("saved") && savedNews.length > 0) {
+        const savedNewsToRender = newsData.filter(news => savedNews.includes(news.title) && (selectedType === "all" || news.type.includes(selectedType)));
+
+        if (savedNewsToRender.length > 0) {
+            savedNewsToRender.forEach(news => {  
+                const newsElement = createNewsElement(news);
+                newsSection.appendChild(newsElement);
+            });
+        } else {
+            // Nessuna news salvata disponibile in base al tipo
+            const noSavedNewsMessage = document.createElement("h1");
+            noSavedNewsMessage.classList.add("no-news-message");
+            noSavedNewsMessage.textContent = "No saved news available";
+            newsSection.appendChild(noSavedNewsMessage);
+        }
+    // Se il check-mark è attivo e non ci sono notizie salvate, mostra che nessuna news è stata salvata
+    } else if (savedNewsIndicator.classList.contains("saved") && savedNews.length == 0) {
+        const noSavedNewsMessage = document.createElement("h1");
+        noSavedNewsMessage.classList.add("no-news-message");
+        noSavedNewsMessage.textContent = "No news has been saved";
+        newsSection.appendChild(noSavedNewsMessage);
+
+    } else {
 
         if (filteredNews.length > 0) {
-            if (savedNewsIndicator.classList.contains("saved") && savedNews.length > 0) {
-                // Se il check-mark è attivo e ci sono notizie salvate, mostra le notizie salvate
-                const savedNewsFiltered = newsData.filter(news => savedNews.includes(news.title));
-                savedNewsFiltered.forEach(news => {
-                    const newsElement = createNewsElement(news);
-                    newsSection.appendChild(newsElement);
-                });
-            } else if (savedNewsIndicator.classList.contains("saved") && savedNews.length === 0){
-                    // Se il check-mark è attivo e non ci sono notizie salvate, mostra "no news available"
-                    const noNewsMessage = document.createElement("h1");
-                    noNewsMessage.classList.add("no-news-message");
-                    noNewsMessage.textContent = "No news available";
-                    newsSection.appendChild(noNewsMessage);
-            } else {
-                // Altrimenti, mostra le notizie filtrate tramite type
-                filteredNews.forEach(news => {
-                    const newsElement = createNewsElement(news);
-                    newsSection.appendChild(newsElement);
-                });
-            }
+            // Altrimenti, mostra le notizie filtrate tramite type
+            filteredNews.forEach(news => {
+                const newsElement = createNewsElement(news);
+                newsSection.appendChild(newsElement);
+            });
         } else {
-            // Nessuna news disponibile
+            // Nessuna news disponibile in base al tipo
             const noNewsMessage = document.createElement("h1");
             noNewsMessage.classList.add("no-news-message");
             noNewsMessage.textContent = "No news available";
             newsSection.appendChild(noNewsMessage);
         }
-
     }
+}
+
     // Funzione per creare un elemento news
     function createNewsElement(news) {
         const newsElement = document.createElement("div");
         newsElement.classList.add("news-item");
 
-        // Contenuto dell'elemento news
-        newsElement.innerHTML = `
+    // Contenuto dell'elemento news
+    newsElement.innerHTML = `
             <div class="news-header">
                 <h2>${news.title}</h2>
                 <i class="fa-regular fa-bookmark save-bookmark"></i>
@@ -119,10 +130,13 @@ const newsData = [
             toggleSavedNews(news.title);
             updateBookmarkIcon(bookmarkIcon, savedNews.includes(news.title));
 
+            // Aggiornamento delle notizie visualizzate in base al filtro corrente
+            const selectedType = newsTypeSelect.value;
+            displayNews(selectedType);
+
         });
 
         return newsElement;
-       
     }
 
     // Funzione per aggiornare l'icona del bookmark
@@ -146,7 +160,6 @@ const newsData = [
         // Aggiornamento delle notizie visualizzate in base al filtro corrente
         const selectedType = newsTypeSelect.value;
         displayNews(selectedType);
-
 
     }
 
@@ -183,7 +196,6 @@ const newsData = [
         const selectedType = newsTypeSelect.value;
         displayNews(selectedType);
 
-    
     });
 
     // Chiamata iniziale per caricare tutte le news
