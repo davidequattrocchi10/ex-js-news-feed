@@ -114,7 +114,7 @@ const newsData = [
                 <i class="fa-regular fa-bookmark save-bookmark"></i>
             </div>
             <p>pubblicato da: ${news.author}</p>
-            <p>in data ${news.date}</p>
+            <p>in data ${formatDate(news.date)}</p>
             <p>${news.content[0]}</p>
             <img src="${news.image}" alt="${news.title}">
             <div class="buttons">
@@ -197,6 +197,13 @@ const newsData = [
         displayNews(selectedType);
 
     });
+
+    // Funzione per formattare la data nel formato (DD/MM/YYYY)
+    function formatDate(dateString) {
+        const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString('it-IT', options);
+}
 
     // Chiamata iniziale per caricare tutte le news
     displayNews("all");
